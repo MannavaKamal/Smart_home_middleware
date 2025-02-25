@@ -11,7 +11,8 @@ app1.use(parser.json());
 app1.use(cors());
 
 // WebSocket Server
-const wss = new WebSocket.Server({ port: 8080 });
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
 const clients = {};  // Stores clients by their unique ID
 
 wss.on("connection", (ws) => {
@@ -120,3 +121,7 @@ app1.post("/board", async (req, res) => {
     }
 });
 app1.listen(5000, () => console.log("Route server running at 5000"));
+const PORT = process.env.PORT || 8080;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
