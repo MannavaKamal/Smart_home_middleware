@@ -11,7 +11,7 @@ app1.use(parser.json());
 app1.use(cors());
 
 // WebSocket Server
-const server = http.createServer(app);
+const server = http.createServer(app1);
 const wss = new WebSocket.Server({ server });
 const clients = {};  // Stores clients by their unique ID
 
